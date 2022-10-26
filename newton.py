@@ -59,7 +59,7 @@ def parse_args():
     return args
 
 def generate_test_data(num_points):
-    ''' Create random test data with small random offsets from line x = y
+    ''' Create random test data with small random offsets from line y = x
     '''
     x = []
     y = []
