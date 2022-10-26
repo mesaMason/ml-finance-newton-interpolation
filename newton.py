@@ -58,7 +58,9 @@ def parse_args():
         raise Exception("num_points must be greater than 0")
     return args
 
-def generate_random_points(num_points):
+def generate_test_data(num_points):
+    ''' Create random test data with small random offsets from line x = y
+    '''
     x = []
     y = []
     for i in range(num_points):
@@ -84,8 +86,8 @@ def main():
     args = parse_args()
     num_points = args.num_points
 
-    # generate random points around line x = y
-    data_x, data_y = generate_random_points(num_points)
+    # generate test data points
+    data_x, data_y = generate_test_data(num_points)
 
     # use Newton interpolation to calculate coefficients
     newton = Newton(data_x, data_y)
@@ -97,13 +99,13 @@ def main():
     step = 0.01
     start = 10 - 1/num_points
     end = 10 + num_points - 1 + 1/num_points
+    x = np.arange(start, end, step)
 
     # evaluate and plot the polynomial given the coefficients
-    x = np.arange(start, end, step)
     y = newton_polynomial(x, data_x, coefficients)
     plt.plot(x, y, color='r')
 
-    # scatter plot the generated data points
+    # scatter plot the test data points
     plt.scatter(data_x, data_y, color='b')
 
     # show the plots
